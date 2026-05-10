@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Методи Оптимізації</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../dist/css/main.css">
+</head>
+<body>
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-chart-line"></i> ОПТИМІЗАЦІЯ
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <!-- Додаємо data-method для ідентифікації в JS -->
+                <li class="active" data-method="simplex"><i class="fa-solid fa-calculator"></i> Класичний симплекс</li>
+                <li data-method="dual"><i class="fa-solid fa-code-compare"></i> Двоїстий симплекс</li>
+                <li data-method="gomory"><i class="fa-solid fa-braille"></i> Метод Гоморі</li>
+                <li data-method="transport"><i class="fa-solid fa-truck-fast"></i> Транспортна задача</li>
+                <li data-method="big-m"><i class="fa-solid fa-square-plus"></i> Штучний базис</li>
+                <li data-method="graphic"><i class="fa-solid fa-chart-area"></i> Графічний метод</li>
+            </ul>
+        </nav>
+        <!-- ... (експорт без змін) ... -->
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <h2 id="view-title">Матричний редактор умови</h2>
+
+            <!-- Контроли для СИМПЛЕКСУ (ховаються для транспортної) -->
+            <div class="controls" id="simplex-controls">
+                <label>Змінні (n): <input type="number" id="input-n" value="3" min="1"></label>
+                <label>Обмеження (m): <input type="number" id="input-m" value="3" min="1"></label>
+                <select id="target-type">
+                    <option value="max">→ MAX</option>
+                    <option value="min">→ MIN</option>
+                </select>
+            </div>
+
+            <!-- Контроли для ТРАНСПОРТНОЇ (показуються лише для неї) -->
+            <div class="controls" id="transport-controls" style="display: none;">
+                <label>Постачальники (M): <input type="number" id="input-tm" value="3" min="2"></label>
+                <label>Споживачі (N): <input type="number" id="input-tn" value="3" min="2"></label>
+            </div>
+        </header>
+
+        <div class="workspace">
+            <!-- РЕЖИМ 1: Рівняння (Симплекс, Гоморі тощо) -->
+            <div id="workspace-simplex" class="card matrix-editor">
+                <div id="objective-func-container" class="matrix-row"></div>
+                <hr style="margin: 1rem 0; border: none; border-top: 1px solid #e2e8f0;">
+                <div id="constraints-container"></div>
+            </div>
+
+            <!-- РЕЖИМ 2: Транспортна таблиця -->
+            <div id="workspace-transport" class="card" style="display: none;">
+                <div class="table-responsive">
+                    <table class="transport-table" id="transport-table-container">
+                        <!-- Генерується динамічно -->
+                    </table>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <div id="validation-status" class="status">✓ Умова валідна</div>
+                <button id="solve-btn" class="btn-solve">РОЗВ'ЯЗАТИ</button>
+            </div>
+
+            <div class="card results">
+                <h3>Детальний розв'язок</h3>
+                <div id="solution-output">
+                    <p>Тут з'явиться покроковий розв'язок...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="../dist/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "none",
+    "outFile": "./dist/js/script.js",
+    "rootDir": "./ts",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "files": [
+    "ts/Fraction.ts",
+    "ts/Interfaces.ts",
+    "ts/SimplexSolver.ts",
+    "ts/ResultRenderer.ts",
+    "ts/AppController.ts"
+  ],
+  "include": ["ts/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "optimization-methods-app",
+  "version": "1.0.0",
+  "description": "Mathematical Optimization Methods Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "start": "gulp",
+    "build": "gulp build",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "browser-sync": "^2.29.3",
+    "gh-pages": "^6.3.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "jest": "^30.4.2",
+    "sass": "^1.99.0",
+    "ts-jest": "^29.4.9",
+    "typescript": "^5.0.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "gulp-concat": "^2.6.1"
+  }
+}

@@ -1,0 +1,339 @@
+$bg-slate-900: #0f172a;
+$bg-slate-800: #1e293b;
+$bg-slate-50: #f8fafc;
+$text-slate-300: #cbd5e1;
+$text-slate-700: #334155;
+$emerald-500: #10b981;
+$emerald-600: #059669;
+$border-light: #e2e8f0;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: $bg-slate-50;
+  color: $text-slate-700;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: $bg-slate-900;
+  color: $text-slate-300;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .brand {
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    border-bottom: 1px solid $bg-slate-800;
+  }
+
+  nav {
+    flex: 1;
+    padding: 1rem 0;
+    overflow-y: auto;
+
+    ul {
+      list-style: none;
+
+      li {
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        &:hover, &.active {
+          background-color: $bg-slate-800;
+          color: white;
+          border-left: 4px solid $emerald-500;
+        }
+      }
+    }
+  }
+
+  .export-section {
+    padding: 1.5rem;
+    border-top: 1px solid $bg-slate-800;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .btn-export {
+      background: transparent;
+      color: $text-slate-300;
+      border: 1px solid $bg-slate-800;
+      padding: 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: $bg-slate-800;
+        color: white;
+      }
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  header {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid $border-light;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .controls {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+
+      input[type="number"], select {
+        padding: 0.5rem;
+        border: 1px solid $border-light;
+        border-radius: 4px;
+        width: 60px;
+        text-align: center;
+      }
+      select { width: auto; }
+    }
+  }
+
+  .workspace {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.matrix-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 5px;
+
+  input {
+    width: 60px;
+    height: 35px;
+    text-align: center;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-family: inherit;
+
+    &:focus {
+      border-color: #3b82f6;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  span {
+    font-style: italic;
+    color: #475569;
+    margin-right: 5px;
+  }
+
+  select {
+    padding: 5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+  }
+}
+
+#constraints-matrix {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid $border-light;
+
+  .status {
+    color: $emerald-600;
+    background: rgba($emerald-500, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .btn-solve {
+    background: $emerald-500;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover { background: $emerald-600; }
+  }
+}
+
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 0.25rem;
+  line-height: 1.2;
+  font-size: 0.9em;
+
+  .numerator {
+    border-bottom: 1px solid currentColor;
+    padding: 0 0.2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .denominator {
+    padding: 0 0.2rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* --- ОНОВЛЕНА ТРАНСПОРТНА ТАБЛИЦЯ (2х2 СТИЛЬ) --- */
+.transport-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+
+  th, td {
+    border: 1px solid $border-light;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  th {
+    background-color: $bg-slate-50;
+    color: $text-slate-700;
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  .label-cell {
+    background-color: $bg-slate-50;
+    font-weight: 600;
+    min-width: 100px;
+  }
+
+  // Стиль для комбінованої комірки
+  .transport-cell {
+    padding: 0 !important; // Прибираємо паддінги для вкладеного контейнера
+    width: 110px;
+    height: 85px;
+  }
+
+  .cell-combined {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    // Поле вартості (маленьке, зверху справа)
+    .cell-cost {
+      align-self: flex-end;
+      width: 45%;
+      height: 35%;
+      background: $bg-slate-50;
+      border-left: 1px solid $border-light;
+      border-bottom: 1px solid $border-light;
+      font-size: 0.75rem;
+      color: $emerald-600;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 0 0 0 4px;
+      outline: none;
+
+      &:focus { background: white; border-color: $emerald-500; }
+    }
+
+    // Поле кількості (велике, по центру)
+    .cell-qty {
+      flex: 1;
+      width: 100%;
+      background: transparent;
+      border: none;
+      font-size: 1.1rem;
+      text-align: center;
+      color: $bg-slate-900;
+      outline: none;
+
+      &:focus { background: rgba($emerald-500, 0.03); }
+    }
+  }
+
+  // Основні поля для Запасів та Потреб
+  .input-main {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    outline: none;
+    padding: 10px;
+
+    &:focus { background: white; }
+  }
+
+  .stock-cell { background-color: rgba($emerald-500, 0.05); padding: 0 !important; }
+  .demand-cell { background-color: rgba(59, 130, 246, 0.05); padding: 0 !important; }
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid $border-light;
+}
+
+/* Анімація перемикання */
+.workspace > div {
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
