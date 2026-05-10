@@ -1,0 +1,316 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.sidebar .brand {
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  border-bottom: 1px solid #1e293b;
+}
+.sidebar nav {
+  flex: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+.sidebar nav ul {
+  list-style: none;
+}
+.sidebar nav ul li {
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.sidebar nav ul li:hover, .sidebar nav ul li.active {
+  background-color: #1e293b;
+  color: white;
+  border-left: 4px solid #10b981;
+}
+.sidebar .export-section {
+  padding: 1.5rem;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sidebar .export-section .btn-export {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #1e293b;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sidebar .export-section .btn-export:hover {
+  background: #1e293b;
+  color: white;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.main-content header {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-content header .controls {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.main-content header .controls input[type=number], .main-content header .controls select {
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  width: 60px;
+  text-align: center;
+}
+.main-content header .controls select {
+  width: auto;
+}
+.main-content .workspace {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+.main-content .workspace .card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.matrix-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+.matrix-row input {
+  width: 60px;
+  height: 35px;
+  text-align: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-family: inherit;
+}
+.matrix-row input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+.matrix-row span {
+  font-style: italic;
+  color: #475569;
+  margin-right: 5px;
+}
+.matrix-row select {
+  padding: 5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+#constraints-matrix {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+}
+.action-bar .status {
+  color: #059669;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.action-bar .btn-solve {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.action-bar .btn-solve:hover {
+  background: #059669;
+}
+
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 0.25rem;
+  line-height: 1.2;
+  font-size: 0.9em;
+}
+.fraction .numerator {
+  border-bottom: 1px solid currentColor;
+  padding: 0 0.2rem;
+  width: 100%;
+  text-align: center;
+}
+.fraction .denominator {
+  padding: 0 0.2rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* --- ОНОВЛЕНА ТРАНСПОРТНА ТАБЛИЦЯ (2х2 СТИЛЬ) --- */
+.transport-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.transport-table th, .transport-table td {
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  padding: 0.5rem;
+}
+.transport-table th {
+  background-color: #f8fafc;
+  color: #334155;
+  font-size: 0.85rem;
+  padding: 0.75rem;
+}
+.transport-table .label-cell {
+  background-color: #f8fafc;
+  font-weight: 600;
+  min-width: 100px;
+}
+.transport-table .transport-cell {
+  padding: 0 !important;
+  width: 110px;
+  height: 85px;
+}
+.transport-table .cell-combined {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.transport-table .cell-combined .cell-cost {
+  align-self: flex-end;
+  width: 45%;
+  height: 35%;
+  background: #f8fafc;
+  border-left: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.75rem;
+  color: #059669;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0 0 0 4px;
+  outline: none;
+}
+.transport-table .cell-combined .cell-cost:focus {
+  background: white;
+  border-color: #10b981;
+}
+.transport-table .cell-combined .cell-qty {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #0f172a;
+  outline: none;
+}
+.transport-table .cell-combined .cell-qty:focus {
+  background: rgba(16, 185, 129, 0.03);
+}
+.transport-table .input-main {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  outline: none;
+  padding: 10px;
+}
+.transport-table .input-main:focus {
+  background: white;
+}
+.transport-table .stock-cell {
+  background-color: rgba(16, 185, 129, 0.05);
+  padding: 0 !important;
+}
+.transport-table .demand-cell {
+  background-color: rgba(59, 130, 246, 0.05);
+  padding: 0 !important;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Анімація перемикання */
+.workspace > div {
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
